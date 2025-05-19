@@ -1,26 +1,50 @@
 {
-  "name": "lama-dev-next-dashboard",
+  "name": "mumbai",
   "version": "0.1.0",
   "private": true,
+  "main": "src/index.ts",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "do": "nodemon dist/index.js",
+    "bet": "tsc",
+    "go": "node dist/index.js"
   },
   "dependencies": {
+    "@prisma/client": "^6.7.0",
+    "@types/express": "^5.0.1",
+    "@types/nodemon": "^3.1.1",
+    "@types/react-big-calendar": "^1.16.1",
+    "express": "^5.1.0",
+    "jquery": "^3.6.0",
+    "next": "14.2.5",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.7.0",
     "react": "^18",
+    "react-big-calendar": "^1.18.0",
+    "react-calendar": "^5.1.0",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "recharts": "^2.15.3",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@types/node": "^22.15.17",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "prisma.schema": {
+    "schema": "db/prisma/schema.prisma"
   }
 }
