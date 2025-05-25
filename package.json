@@ -11,26 +11,31 @@
     "do": "nodemon dist/index.js",
     "bet": "tsc",
     "go": "node dist/index.js",
-  "prisma:generate": "prisma generate",
-  "prisma:migrate": "prisma migrate dev",
-  "prisma:studio": "prisma studio"
-
-
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.20.0",
+    "@hookform/resolvers": "^5.0.1",
     "@prisma/client": "^6.7.0",
     "@types/express": "^5.0.1",
     "@types/nodemon": "^3.1.1",
     "@types/react-big-calendar": "^1.16.1",
     "express": "^5.1.0",
+    "i": "^0.3.7",
     "jquery": "^3.6.0",
-    "next": "14.2.5",
+    "next": "^14.2.25",
+    "next-cloudinary": "^6.16.0",
     "nodemon": "^3.1.10",
+    "npm": "^11.4.1",
     "prisma": "^6.7.0",
     "react": "^18",
     "react-big-calendar": "^1.18.0",
     "react-calendar": "^5.1.0",
     "react-dom": "^18",
+    "react-hook-form": "^7.56.4",
+    "react-toastify": "^11.0.5",
     "recharts": "^2.15.3",
     "zod": "^3.24.4"
   },
@@ -48,6 +53,6 @@
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
-     "schema": "src/prisma/prisma/schema.prisma"
+    "schema": "src/prisma/prisma/schema.prisma"
   }
 }

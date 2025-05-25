@@ -129,7 +129,7 @@ export const deleteClass = async (
       },
     });
 
-     revalidatePath("/list/class");
+    revalidatePath("/list/class");
     return { success: true, error: false };
   } catch (err) {
     console.log(err);
@@ -142,13 +142,13 @@ export const createTeacher = async (
   data: TeacherSchema
 ) => {
   try {
-    const clerk= await clerkClient();
+    const clerk = await clerkClient();
     const user = await clerk.users.createUser({
       username: data.username,
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
-      publicMetadata:{role:"teacher"}
+      publicMetadata: { role: "teacher" },
     });
 
     await prisma.teacher.create({
@@ -264,18 +264,10 @@ export const createStudent = async (
     if (classItem && classItem.capacity === classItem._count.students) {
       return { success: false, error: true };
     }
-    const clerk = await clerkClient();
-    const user = await clerk.users.createUser({
-      username: data.username,
-      password: data.password,
-      firstName: data.name,
-      lastName: data.surname,
-      publicMetadata:{role:"student"}
-    });
 
     await prisma.student.create({
       data: {
-        id: user.id,
+        id: data.id,
         username: data.username,
         name: data.name,
         surname: data.surname,
@@ -288,18 +280,18 @@ export const createStudent = async (
         birthday: data.birthday,
         gradeId: data.gradeId,
         classId: data.classId,
-        parentId: data.parentId,
+        parentId:
+          data.parentId && data.parentId.trim() !== "" ? data.parentId : "",
       },
     });
 
-    // revalidatePath("/list/students");
+    revalidatePath("/list/students");
     return { success: true, error: false };
   } catch (err) {
     console.log(err);
     return { success: false, error: true };
   }
 };
-
 export const updateStudent = async (
   currentState: CurrentState,
   data: StudentSchema
@@ -337,7 +329,7 @@ export const updateStudent = async (
         parentId: data.parentId,
       },
     });
-     revalidatePath("/list/students");
+    revalidatePath("/list/students");
     return { success: true, error: false };
   } catch (err) {
     console.log(err);

@@ -5,19 +5,9 @@ import { useForm } from "react-hook-form";
 import InputField from "../InputField";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import {
-  studentSchema,
-  StudentSchema,
-  teacherSchema,
-  TeacherSchema,
-} from "@/lib/formValidationSchemas";
+import { studentSchema, StudentSchema } from "@/lib/formValidationSchemas";
 import { useFormState } from "react-dom";
-import {
-  createStudent,
-  createTeacher,
-  updateStudent,
-  updateTeacher,
-} from "@/lib/actions";
+import { createStudent, updateStudent } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { CldUploadWidget } from "next-cloudinary";
@@ -52,9 +42,16 @@ const StudentForm = ({
   );
 
   const onSubmit = handleSubmit((data) => {
-    console.log("hello");
-    console.log(data);
-    formAction({ ...data, img: img?.secure_url });
+    const processedData: StudentSchema = {
+      ...data,
+      birthday: new Date(data.birthday),
+      gradeId: parseInt(data.gradeId as any),
+      classId: parseInt(data.classId as any),
+      parentId: data.parentId || "",
+      img: img?.secure_url,
+    };
+
+    formAction(processedData);
   });
 
   const router = useRouter();
@@ -162,7 +159,9 @@ const StudentForm = ({
         <InputField
           label="Birthday"
           name="birthday"
-          defaultValue={data?.birthday.toISOString().split("T")[0]}
+          defaultValue={
+            data?.birthday ? data.birthday.toISOString().split("T")[0] : ""
+          }
           register={register}
           error={errors.birthday}
           type="date"
