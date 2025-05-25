@@ -10,7 +10,12 @@
     "lint": "next lint",
     "do": "nodemon dist/index.js",
     "bet": "tsc",
-    "go": "node dist/index.js"
+    "go": "node dist/index.js",
+  "prisma:generate": "prisma generate",
+  "prisma:migrate": "prisma migrate dev",
+  "prisma:studio": "prisma studio"
+
+
   },
   "dependencies": {
     "@prisma/client": "^6.7.0",
@@ -42,9 +47,7 @@
     "typescript": "^5.8.3"
   },
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
-  },
-  "prisma.schema": {
-    "schema": "db/prisma/schema.prisma"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+     "schema": "src/prisma/prisma/schema.prisma"
   }
 }
