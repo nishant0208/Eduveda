@@ -420,7 +420,7 @@ export const updateExam = async (
   currentState: CurrentState,
   data: ExamSchema
 ) => {
-  // const { userId, sessionClaims } = auth();
+  // const { userId, sessionClaims } =await  auth();
   // const role = (sessionClaims?.metadata as { role?: string })?.role;
 
   try {
@@ -463,7 +463,7 @@ export const deleteExam = async (
 ) => {
   const id = data.get("id") as string;
 
-  // const { userId, sessionClaims } = auth();
+  // const { userId, sessionClaims } =await  auth();
   // const role = (sessionClaims?.metadata as { role?: string })?.role;
 
   try {
