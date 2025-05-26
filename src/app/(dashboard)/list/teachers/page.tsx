@@ -20,7 +20,7 @@ const TeacherListPage = async ({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) => {
-  const { sessionClaims } = auth();
+  const { sessionClaims } = await auth();
   const handleSubmit = async (formData: StudentSchema) => {
     const result = await createTeacher(formData);
     console.log(result, "result is here");
