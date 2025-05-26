@@ -8,6 +8,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ITEM_PER_PAGE } from "@/lib/settings";
 import { auth } from "@clerk/nextjs/server";
+import { StudentSchema } from "@/lib/formValidationSchemas";
+import { createTeacher } from "@/lib/actions";
+import { toast } from "react-toastify";
+import { error } from "console";
 
 type TeacherList = Teacher & { subjects: Subject[] } & { classes: Class[] };
 
@@ -17,6 +21,20 @@ const TeacherListPage = async ({
   searchParams: { [key: string]: string | undefined };
 }) => {
   const { sessionClaims } = auth();
+  const handleSubmit = async (formData: StudentSchema) => {
+    const result = await createTeacher(formData);
+    console.log(result, "result is here");
+
+    if (result.success) {
+      console.log(result.success);
+
+      toast.success("teacher created successfully");
+    } else {
+      console.log(result.error, "here");
+
+      toast.error("error creating teacher");
+    }
+  };
   const role = (sessionClaims?.metadata as { role?: string })?.role;
   const columns = [
     {
@@ -92,15 +110,10 @@ const TeacherListPage = async ({
               <Image src="/view.png" alt="" width={16} height={16} />
             </button>
           </Link>
-          {role === "admin" && (
-            <div>
-              {" "}
-              <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
-                <Image src="/delete.png" alt="" width={16} height={16} />
-              </button>
-              <FormContainer table="teacher" type="delete" id={item.id} />
-            </div>
-          )}
+          <div>
+            {" "}
+            <FormContainer table="teacher" type="delete" id={item.id} />
+          </div>
         </div>
       </td>
     </tr>
@@ -108,8 +121,6 @@ const TeacherListPage = async ({
   const { page, ...queryParams } = searchParams;
 
   const p = page ? parseInt(page) : 1;
-
-  // URL PARAMS CONDITION
 
   const query: Prisma.TeacherWhereInput = {};
 
@@ -161,9 +172,7 @@ const TeacherListPage = async ({
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" && (
-              <FormContainer table="teacher" type="create" />
-            )}
+            <FormContainer table="teacher" type="create" />
           </div>
         </div>
       </div>

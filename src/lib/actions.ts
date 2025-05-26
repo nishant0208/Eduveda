@@ -137,23 +137,20 @@ export const deleteClass = async (
   }
 };
 
-export const createTeacher = async (
-  currentState: CurrentState,
-  data: TeacherSchema
-) => {
+export const createTeacher = async (data: TeacherSchema) => {
   try {
-    const clerk = await clerkClient();
-    const user = await clerk.users.createUser({
-      username: data.username,
-      password: data.password,
-      firstName: data.name,
-      lastName: data.surname,
-      publicMetadata: { role: "teacher" },
-    });
+    // const clerk = await clerkClient();
+    // const user = await clerk.users.createUser({
+    //   username: data.username,
+    //   password: data.password,
+    //   firstName: data.name,
+    //   lastName: data.surname,
+    //   publicMetadata: { role: "teacher" },
+    // });
 
     await prisma.teacher.create({
       data: {
-        id: user.id,
+        id: data.id,
         username: data.username,
         name: data.name,
         surname: data.surname,
@@ -226,26 +223,47 @@ export const updateTeacher = async (
     return { success: false, error: true };
   }
 };
-
 export const deleteTeacher = async (
   currentState: CurrentState,
   data: FormData
 ) => {
   const id = data.get("id") as string;
-  try {
-    const clerk = await clerkClient();
-    await clerk.users.deleteUser(id);
 
-    await prisma.teacher.delete({
+  try {
+    const lessons = await prisma.lesson.findMany({
       where: {
-        id: id,
+        teacherId: id,
+      },
+      select: {
+        id: true,
       },
     });
 
-    // revalidatePath("/list/teachers");
+    const lessonIds = lessons.map((lesson) => lesson.id);
+
+    await prisma.exam.deleteMany({
+      where: {
+        lessonId: {
+          in: lessonIds,
+        },
+      },
+    });
+
+    await prisma.lesson.deleteMany({
+      where: {
+        teacherId: id,
+      },
+    });
+
+    await prisma.teacher.delete({
+      where: {
+        id,
+      },
+    });
+
     return { success: true, error: false };
   } catch (err) {
-    console.log(err);
+    console.error("Error deleting teacher:", err);
     return { success: false, error: true };
   }
 };
