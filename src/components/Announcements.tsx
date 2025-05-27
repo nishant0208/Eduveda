@@ -32,7 +32,7 @@ const Announcements = async () => {
       </div>
       <div className="flex flex-col gap-4 mt-4">
         {data[0] && (
-          <div className="bg-lamaSkyLight rounded-md p-4">
+          <div className="bg-trail rounded-md p-4">
             <div className="flex items-center justify-between">
               <h2 className="font-medium">{data[0].title}</h2>
               <span className="text-xs text-gray-400 bg-white rounded-md px-1 py-1">
@@ -43,7 +43,7 @@ const Announcements = async () => {
           </div>
         )}
         {data[1] && (
-          <div className="bg-lamaPurpleLight rounded-md p-4">
+          <div className="bg-accent rounded-md p-4">
             <div className="flex items-center justify-between">
               <h2 className="font-medium">{data[1].title}</h2>
               <span className="text-xs text-gray-400 bg-white rounded-md px-1 py-1">
@@ -54,7 +54,7 @@ const Announcements = async () => {
           </div>
         )}
         {data[2] && (
-          <div className="bg-lamaYellowLight rounded-md p-4">
+          <div className="bg-primary rounded-md p-4">
             <div className="flex items-center justify-between">
               <h2 className="font-medium">{data[2].title}</h2>
               <span className="text-xs text-gray-400 bg-white rounded-md px-1 py-1">
