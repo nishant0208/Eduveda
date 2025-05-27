@@ -34,6 +34,7 @@ const TeacherForm = ({
   const [img, setImg] = useState<any>();
 
   const [state, formAction] = useFormState(
+    // @ts-ignore
     type === "create" ? createTeacher : updateTeacher,
     {
       success: false,
@@ -44,23 +45,15 @@ const TeacherForm = ({
   const onSubmit = handleSubmit((data) => {
     const processedData: TeacherSchema = {
       ...data,
-      // birthday is already coerced to Date by zod, convert to ISO string for DB or API if needed
       birthday: new Date(data.birthday),
-      // ensure subjects is always an array (even if undefined or null)
       subjects: data.subjects ?? [],
-      // if password is optional or blank, keep it as empty string or undefined
       password: data.password || "",
-      // email fallback if left blank
       email: data.email || "",
-      // phone fallback
       phone: data.phone || "",
-      // optional image
       img: img?.secure_url || "",
     };
 
-    // Submit using server action
     createTeacher(processedData);
-    // formAction(processedData);
   });
 
   const router = useRouter();
