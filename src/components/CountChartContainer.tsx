@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import CountChart from "./CountChart";
 import prisma from "@/lib/prisma";
