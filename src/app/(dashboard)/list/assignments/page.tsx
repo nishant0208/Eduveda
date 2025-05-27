@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
@@ -21,12 +23,10 @@ const AssignmentListPage = async ({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) => {
-
-  const { userId, sessionClaims } =await auth();
+  const { userId, sessionClaims } = await auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
   const currentUserId = userId;
-  
-  
+
   const columns = [
     {
       header: "Subject Name",
@@ -55,13 +55,15 @@ const AssignmentListPage = async ({
         ]
       : []),
   ];
-  
+
   const renderRow = (item: AssignmentList) => (
     <tr
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
     >
-      <td className="flex items-center gap-4 p-4">{item.lesson.subject.name}</td>
+      <td className="flex items-center gap-4 p-4">
+        {item.lesson.subject.name}
+      </td>
       <td>{item.lesson.class.name}</td>
       <td className="hidden md:table-cell">
         {item.lesson.teacher.name + " " + item.lesson.teacher.surname}

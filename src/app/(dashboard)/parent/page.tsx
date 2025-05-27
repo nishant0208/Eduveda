@@ -1,13 +1,14 @@
+export const dynamic = "force-dynamic";
+
 import Announcements from "@/components/Announcements";
 import BigCalendarContainer from "@/components/BigCalenderContainer";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 
-
 const ParentPage = async () => {
   const { userId } = await auth();
   const currentUserId = userId;
-  
+
   const students = await prisma.student.findMany({
     where: {
       parentId: currentUserId!,

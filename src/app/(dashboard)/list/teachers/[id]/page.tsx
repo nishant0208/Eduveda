@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Announcements from "@/components/Announcements";
 import BigCalendarContainer from "@/components/BigCalenderContainer";
 import FormContainer from "@/components/FormContainer";
@@ -97,13 +99,29 @@ const SingleTeacherPage = async ({
           {/* SMALL CARDS */}
           <div className="flex-1 flex gap-4 justify-between flex-wrap">
             {/* Attendance */}
-            <InfoCard icon="/singleAttendance.png" label="Attendance" value="90%" />
+            <InfoCard
+              icon="/singleAttendance.png"
+              label="Attendance"
+              value="90%"
+            />
             {/* Branches */}
-            <InfoCard icon="/singleBranch.png" label="Branches" value={teacher._count.subjects} />
+            <InfoCard
+              icon="/singleBranch.png"
+              label="Branches"
+              value={teacher._count.subjects}
+            />
             {/* Lessons */}
-            <InfoCard icon="/singleLesson.png" label="Lessons" value={teacher._count.lessons} />
+            <InfoCard
+              icon="/singleLesson.png"
+              label="Lessons"
+              value={teacher._count.lessons}
+            />
             {/* Classes */}
-            <InfoCard icon="/singleClass.png" label="Classes" value={teacher._count.classes} />
+            <InfoCard
+              icon="/singleClass.png"
+              label="Classes"
+              value={teacher._count.classes}
+            />
           </div>
         </div>
 
@@ -119,11 +137,31 @@ const SingleTeacherPage = async ({
         <div className="bg-white p-4 rounded-md">
           <h1 className="text-xl font-semibold">Shortcuts</h1>
           <div className="mt-4 flex gap-4 flex-wrap text-xs text-gray-500">
-            <ShortcutLink href={`/list/classes?supervisorId=${teacher.id}`} label="Teacher's Classes" bg="bg-lamaSkyLight" />
-            <ShortcutLink href={`/list/students?teacherId=${teacher.id}`} label="Teacher's Students" bg="bg-lamaPurpleLight" />
-            <ShortcutLink href={`/list/lessons?teacherId=${teacher.id}`} label="Teacher's Lessons" bg="bg-lamaYellowLight" />
-            <ShortcutLink href={`/list/exams?teacherId=${teacher.id}`} label="Teacher's Exams" bg="bg-pink-50" />
-            <ShortcutLink href={`/list/assignments?teacherId=${teacher.id}`} label="Teacher's Assignments" bg="bg-lamaSkyLight" />
+            <ShortcutLink
+              href={`/list/classes?supervisorId=${teacher.id}`}
+              label="Teacher's Classes"
+              bg="bg-lamaSkyLight"
+            />
+            <ShortcutLink
+              href={`/list/students?teacherId=${teacher.id}`}
+              label="Teacher's Students"
+              bg="bg-lamaPurpleLight"
+            />
+            <ShortcutLink
+              href={`/list/lessons?teacherId=${teacher.id}`}
+              label="Teacher's Lessons"
+              bg="bg-lamaYellowLight"
+            />
+            <ShortcutLink
+              href={`/list/exams?teacherId=${teacher.id}`}
+              label="Teacher's Exams"
+              bg="bg-pink-50"
+            />
+            <ShortcutLink
+              href={`/list/assignments?teacherId=${teacher.id}`}
+              label="Teacher's Assignments"
+              bg="bg-lamaSkyLight"
+            />
           </div>
         </div>
         <Performance />
@@ -133,7 +171,15 @@ const SingleTeacherPage = async ({
   );
 };
 
-const InfoCard = ({ icon, label, value }: { icon: string; label: string; value: string | number }) => (
+const InfoCard = ({
+  icon,
+  label,
+  value,
+}: {
+  icon: string;
+  label: string;
+  value: string | number;
+}) => (
   <div className="bg-white p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
     <Image src={icon} alt={label} width={24} height={24} className="w-6 h-6" />
     <div>
@@ -143,7 +189,15 @@ const InfoCard = ({ icon, label, value }: { icon: string; label: string; value: 
   </div>
 );
 
-const ShortcutLink = ({ href, label, bg }: { href: string; label: string; bg: string }) => (
+const ShortcutLink = ({
+  href,
+  label,
+  bg,
+}: {
+  href: string;
+  label: string;
+  bg: string;
+}) => (
   <Link className={`p-3 rounded-md ${bg}`} href={href}>
     {label}
   </Link>
