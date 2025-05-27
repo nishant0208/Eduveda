@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "next dev",
+    "postinstall": "prisma generate",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -16,6 +17,7 @@
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
+    "@clerk/elements": "^0.23.27",
     "@clerk/nextjs": "^6.20.0",
     "@hookform/resolvers": "^5.0.1",
     "@prisma/client": "^6.7.0",
@@ -37,10 +39,8 @@
     "react-hook-form": "^7.56.4",
     "react-toastify": "^11.0.5",
     "recharts": "^2.15.3",
-    "zod": "^3.24.4",
-    "@clerk/elements": "^0.23.27",
-    "tailwind": "^4.0.0"
-    
+    "tailwind": "^4.0.0",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@types/node": "^22.15.17",
@@ -49,10 +49,10 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
+    "prisma": "^6.8.2",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.4",
-    "prisma": "^6.8.2",
     "typescript": "^5.8.3"
   },
   "prisma": {
