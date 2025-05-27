@@ -39,7 +39,7 @@ const AttendanceChartContainer = async () => {
   resData.forEach((item) => {
     const itemDate = new Date(item.date);
     const dayOfWeek = itemDate.getDay();
-    
+
     if (dayOfWeek >= 1 && dayOfWeek <= 5) {
       const dayName = daysOfWeek[dayOfWeek - 1];
 
@@ -63,7 +63,7 @@ const AttendanceChartContainer = async () => {
         <h1 className="text-lg font-semibold">Attendance</h1>
         <Image src="/moreDark.png" alt="" width={20} height={20} />
       </div>
-      <AttendanceChart data={data}/>
+      <AttendanceChart data={data} />
     </div>
   );
 };
