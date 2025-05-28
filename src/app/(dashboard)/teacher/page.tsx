@@ -1,8 +1,10 @@
+export const dynamic = "force-dynamic";
+
 import Announcements from "@/components/Announcements";
 import BigCalendarContainer from "@/components/BigCalenderContainer";
 import { auth } from "@clerk/nextjs/server";
 
-const TeacherPage =async () => {
+const TeacherPage = async () => {
   const { userId } = await auth();
   return (
     <div className="flex-1 p-4 flex gap-4 flex-col xl:flex-row">

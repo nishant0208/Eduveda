@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import FormContainer from "@/components/FormContainer";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
@@ -15,10 +17,8 @@ const ClassListPage = async ({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) => {
-
-  const { sessionClaims } =await auth();
+  const { sessionClaims } = await auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
-
 
   const columns = [
     {
@@ -42,11 +42,11 @@ const ClassListPage = async ({
     },
     ...(role === "admin"
       ? [
-        {
-          header: "Actions",
-          accessor: "action",
-        },
-      ]
+          {
+            header: "Actions",
+            accessor: "action",
+          },
+        ]
       : []),
   ];
 
