@@ -50,15 +50,15 @@ const AdminPage = () => {
     <div className="p-4 flex gap-4 flex-col md:flex-row">
       <div className="w-full lg:w-2/3 flex flex-col gap-8">
         <div className="flex gap-4 justify-between">
-          <div className="rounded-2xl bg-lamaPurple p-4 flex-1 min-w-[130px]">
+          <div className="rounded-2xl bg-trail p-4 flex-1 min-w-[130px]">
             <h1 className="text-2xl font-semibold my-4">Loading...</h1>
             <h2 className="text-sm font-medium text-gray-500">Students</h2>
           </div>
-          <div className="rounded-2xl bg-lamaYellow p-4 flex-1 min-w-[130px]">
+          <div className="rounded-2xl bg-primary p-4 flex-1 min-w-[130px]">
             <h1 className="text-2xl font-semibold my-4">Loading...</h1>
             <h2 className="text-sm font-medium text-gray-500">Teachers</h2>
           </div>
-          <div className="rounded-2xl bg-lamaPurple p-4 flex-1 min-w-[130px]">
+          <div className="rounded-2xl bg-trail p-4 flex-1 min-w-[130px]">
             <h1 className="text-2xl font-semibold my-4">Loading...</h1>
             <h2 className="text-sm font-medium text-gray-500">Parents</h2>
           </div>
@@ -97,7 +97,7 @@ const AdminPage = () => {
         <div className="bg-white p-4 rounded-md">
           <h1 className="text-xl font-semibold mb-4">Announcements</h1>
           <div className="space-y-4">
-            <div className="bg-lamaSkyLight rounded-md p-4">
+            <div className="bg-accent rounded-md p-4">
               <h2 className="font-medium">Sample Announcement</h2>
               <p className="text-sm text-gray-400 mt-1">
                 Loading announcements...
